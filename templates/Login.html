@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <style>
+       body {
+        background-image: url('{{ url_for("static", filename="images/jaromir-kavan.jpg") }}');
+        background-size: cover;
+        background-position: center;
+       }
+       .login-form {
+        width: 350px;
+        margin: auto;
+        margin-top: 50px;
+        background-color:#ccc; 
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px #aaa;
+        }
+
+        form {
+        margin-top: 20px;
+        }
+
+        input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px #ccc;
+        }
+
+        label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 25px;
+        }
+
+        .form-buttons {
+        display: flex;
+        justify-content: space-between;
+        }
+
+        button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0px 0px 5px #ccc;
+        }
+
+        button:hover {
+        opacity: 0.8;
+        }
+
+        button[type="reset"] {
+        background-color: orange;
+        }
+
+        button[type="button"] {
+        background-color: brown;
+        }
+
+        button[type="reset"]:hover, button[type="button"]:hover {
+        color: white;
+        }
+
+        button[type="reset"]:hover {
+        background-color: #FFA500;
+        }
+
+        button[type="button"]:hover {
+        background-color: #8B4513;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="title" style="font-size: 34px; font-weight: bolder; position: fixed; top: 0; left: 0; width: 100%; background-color: #0abb28;">
+        <i class="fas fa-chart-bar" style="color: #fff; font-size: 34px;"></i> Tea Leaves Fertilizer Prediction Model
+    </div>
+      <div class="login-form" style=" margin-bottom: 60px;">
+       
+        <form action="/login" method="POST">
+            <p style="font-weight: bolder;font-size: 30px;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Welcome Back!</p>
+            <h2 style="font-family: Arial, sans-serif; text-align: center; font-size: 28px; color: #333;"><i class="fas fa-sign-in-alt" style="color: #007bff;"></i> Login</h2>
+          <label for="username"><i class="fas fa-user" style="color: #12dd23"></i> Username</label>
+          <input type="text" name="username" placeholder="Enter your Username" required>
+          <label for="password"><i class="fas fa-lock" style="color: #0f8f84"></i> Password</label>
+          <input type="password" name="password" placeholder="Enter your Password" required>
+          <div class="form-buttons">
+            <button type="button" onclick="window.history.back();"><i class="fas fa-arrow-left" style="color: #cf1313"></i> Back</button>
+            <button type="reset"><i class="fas fa-undo" style="color: #a18b0b"></i> Clear</button>
+            <button type="submit"><i class="fas fa-sign-in-alt" style="color: #0a38d1"></i> Login</button>
+          </div>
+        </form>
+      </div>
+</body>
+</html>

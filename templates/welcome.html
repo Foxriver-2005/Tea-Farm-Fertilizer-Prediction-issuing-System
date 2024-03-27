@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Screen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <style>
+       body {
+        background-image: url('{{ url_for("static", filename="images/jaromir-kavan.jpg") }}');
+        background-size: cover;
+        background-position: center;
+       }
+       
+        .welcome-screen {
+        background-color:#cccccc;
+        padding: 30px;
+        text-align: center;
+        margin-top: 100px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-screen h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        }
+
+        .welcome-screen p {
+        font-size: 20px;
+        margin-bottom: 30px;
+        }
+
+        .button-wrapper {
+        display: flex;
+        justify-content: center;
+        }
+
+        .signin-btn{
+            background-color: #07ad1d;
+            color: #fff;
+            border: none;
+            border-radius: 20px; /* Rounded corners */
+            padding: 10px 20px;
+            margin-right: 10px;
+            font-size: 20px; /* Increased font size */
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease; /* Transition effect for hover */
+        }
+
+        .signin-btn:hover {
+            background-color: #0a9e1a;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="title" style="font-size: 34px; font-weight: bolder; position: fixed; top: 0; left: 0; width: 100%; background-color: #0abb28;">
+        <i class="fas fa-chart-bar" style="color: #fff; font-size: 34px;"></i> Tea Leaves Fertilizer Prediction Model
+    </div>
+    <div class="welcome-screen">
+        <h2>Welcome to  Tea Leaves Fertilizer Prediction Model!</h2>
+        <p>This model serves as a tool for predicting the optimal amount <br>
+             of fertilizer to be provided to tea farmers.</p>
+        <p>Please login to continue:</p>
+        <div class="button-wrapper">  
+            <button class="signin-btn"><a href="/login" style="text-decoration: none;"><i class="fas fa-sign-in-alt"></i> Admin Login</a></button>
+        </div>
+      </div>
+      
+</body>
+</html>

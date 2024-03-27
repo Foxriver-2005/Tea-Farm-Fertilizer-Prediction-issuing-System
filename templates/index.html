@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tea Fertilizer Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+       body {
+        background-image: url('{{ url_for("static", filename="images/jaromir-kavan.jpg") }}');
+        background-size: cover;
+        background-position: center;
+       }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color:#ccc; 
+            padding: 20px; 
+            border-radius: 5px; 
+            float: right;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-group button[type="submit"] i {
+            margin-right: 5px;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1  class="title" style="font-size: 34px; font-weight: bolder; position: fixed; top: -30px; left: 0; width: 100%; background-color: #0abb28;">
+        <i class="fas fa-chart-bar" style="color: #fff; font-size: 34px;"></i>Tea Leaves Fertilizer Prediction Model
+  </h1>
+  <div>  <button type="button" class="custom-btn" onclick="logout()" style="position: fixed; top: 0; right: 0; font-size: 20px; background-color: green; border-radius: 10px; padding: 10px 20px; color: white;">Logout</button>
+  </div>
+  <script>
+    
+    function logout() {
+    var confirmLogout = confirm("Are you sure you want to logout?");
+if (confirmLogout) {
+        window.location.href = "/";
+    }
+    }
+</script>
+<div style="width: 100%; margin-bottom: 40px;">
+        <div style="float: left; width: 50% ;  background-color:#ccc; " >
+        <h2 style="text-align: center;"><i class="fas fa-users" style="color: blue; font-size: 30px;"></i>Registered Tea Farmers</h2>
+    <form method="post" style="width: 900px;">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Number</th>
+                    <th>Name</th>
+                    <th> Number of Bushes</th>
+                    <th>Kilos Produced</th>
+                    <th>Size of Land</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for farmer in farmers %}
+                <tr>
+                    <td>{{ farmer[0] }}</td>
+                    <td>{{ farmer[1] }}</td>
+                    <td>{{ farmer[2] }}</td>
+                    <td>{{ farmer[3] }}</td>
+                    <td>{{ farmer[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+       <!--<button type="submit" name="delete_selected" style="background-color: red; color: white; margin-right: 10px; font-size: 16px; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;"><i class="fas fa-trash"></i> Delete Selected</button>-->
+        <button onclick="registerFarmer(event)" style="background-color: #4CAF50; cursor: pointer; color: #ffffff; border-radius: 10px; padding: 8px 16px; transition: background-color 0.3s;">
+            <i class="fas fa-user-plus"></i> Register New Farmer
+        </button>
+
+        <script>
+            function registerFarmer(event) {
+                event.preventDefault(); // Prevent the form submission
+                window.location.href = "/register"; // Redirect to the /register route
+            }
+        </script>
+        
+    </form>
+        </div>
+
+
+     <div class="container">
+        <h1><i class="fas fa-leaf" style="color: green;"></i> Tea Fertilizer Prediction</h1>
+<form action="/predict" method="POST">
+    <div class="form-group">
+        <div class="form-group">
+            <label for="id_number" style="font-size: 20px; font-weight: bolder;"><i class="fas fa-id-card" style="color: blue; font-size: 30px;"></i> ID Number:</label>
+            <input type="text" name="id_number" id="id_number" value="{{ search_id }}" required>
+            <button type="button" onclick="searchFarmer()" style="background-color: green; border-radius: 10px; color: white; padding: 8px 16px; transition: background-color 0.3s;">
+                <i class="fas fa-search" style="margin-right: 5px;"></i> Search
+            </button>
+            <div class="form-group">
+                <label for="message" style="font-size: 20px; font-weight: bolder; color: red;">{{ message }}</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="farmer_name" style="font-size: 20px; font-weight: bolder;"><i class="fas fa-user" style="color: green; font-size: 30px;"></i> Farmer Name:</label>
+            <input type="text" name="farmer_name" id="farmer_name" value="{{ farmer_name }}" readonly>
+        </div>
+        
+        <div class="form-group">
+            <label for="bushes" style="font-size: 20px; font-weight: bolder;"><i class="fas fa-tree" style="color: green; font-size: 30px;"></i> Number of Bushes:</label>
+            <input type="number" name="bushes" id="bushes" value="{{ bushes }}" readonly>
+        </div>
+        
+        <div class="form-group">
+            <label for="kilos" style="font-size: 20px; font-weight: bolder;"><i class="fas fa-weight" style="color: #f44336; font-size: 30px;"></i> Kilos Produced Per Annum:</label>
+            <input type="number" name="kilos" id="kilos" value="{{ kilos }}" readonly>
+        </div>
+        
+        <div class="form-group">
+            <label for="size" style="font-size: 20px; font-weight: bolder;"><i class="fas fa-map" style="color: brown; font-size: 30px;"></i> Size of the Land:</label>
+            <input type="number" name="size" id="size" value="{{ size }}" readonly>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit" style="transition: background-color 0.3s;"><i class="fas fa-search"></i> Predict</button>
+        </div>
+        
+        <script>
+            function searchFarmer() {
+                var idNumber = document.getElementById("id_number").value;
+                window.location.href = "/search?search_id=" + idNumber;
+            }
+        </script>   
+</form> 
+            
+            {% if prediction %}
+            <div class="result">
+                <h2><i class="fas fa-chart-line" style="color: green; font-size: 30px;"></i> Prediction:</h2>
+                <p style="font-size: 25px; font-weight: bolder;">{{ prediction[0] }} bags of fertilizers</p>
+                <button onclick="clearPrediction()" style="background-color: #ff0000;  cursor: pointer; color: #ffffff; border-radius: 10px; padding: 8px 16px; transition: background-color 0.3s;">
+                    <i class="fas fa-trash-alt"></i> Clear
+                </button>   
+            </div>
+            {% endif %}
+        
+            <script>
+                function clearPrediction() {
+                    // Code to clear the prediction here
+                    document.querySelector('.result').remove();
+                }
+            </script>
+            
+        </div>
+
+    </div> 
+    <div>
+        <div style="background-color:#ccc; position: absolute; left: 0; bottom: 0; width: 50%; padding: 20px;">
+            <h2 style="text-align: center;"><i class="fas fa-list" style="color: blue; font-size: 30px;"></i>List of Farmers With Allocated Fertilizers</h2>
+            <form method="post" style="width: 900px; margin: 0 auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Number</th>
+                            <th>Name</th>
+                            <th>Number of Bushes</th>
+                            <th>Kilos Produced</th>
+                            <th>Size of Land</th>
+                            <th>Fertilizer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for farmer in Fertilizer %}
+                        <tr>
+                            <td>{{ farmer[0] }}</td>
+                            <td>{{ farmer[1] }}</td>
+                            <td>{{ farmer[2] }}</td>
+                            <td>{{ farmer[3] }}</td>
+                            <td>{{ farmer[4] }}</td>
+                            <td>{{ farmer[5] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+        </div>        
+</body>
+</html>

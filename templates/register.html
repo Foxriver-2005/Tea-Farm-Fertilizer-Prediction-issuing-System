@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register new Farmer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <style>
+        body {
+        background-image: url('{{ url_for("static", filename="images/jaromir-kavan.jpg") }}');
+        background-size: cover;
+        background-position: center;
+       }
+        h2 {
+            text-align: center;
+            font-size: 36px;
+            font-style: oblique;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        form {
+            width: 400px;
+            margin: auto;
+            background-color:#ccc; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px #aaa;
+        }
+        input[type="text"], input[type="password"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        label {
+            font-size: 25px;
+            font-style: italic;
+            font-weight: bolder;
+            color: #333;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .h2 i {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            margin-right: 10px;
+            font-size: 40px;
+        }
+        
+        .clear-btn, .back-btn, .signup-btn {
+            display: inline-block;
+            border-radius: 20px;
+            padding: 10px 30px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .clear-btn {
+        background-color: orange;
+        }
+
+        .back-btn {
+        background-color: brown;
+        }
+
+        .signup-btn {
+        background-color: green;
+        }
+
+        .clear-btn:hover, .back-btn:hover, .signup-btn:hover {
+        opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="title" style="font-size: 34px; font-weight: bolder; position: fixed; top: 0; left: 0; width: 100%; background-color: #0abb28;">
+        <i class="fas fa-chart-bar" style="color: #fff; font-size: 34px;"></i> Tea Leaves Fertilizer Prediction Model
+    </div>
+    <div class="signup-form">
+      <form method="post" action="/register">
+        <h2><i class="fas fa-user-plus" style="color: #007bff"></i> Register new Farmer</h2>
+        <div>
+            <label for="id_number"><i class="fas fa-id-card" style="color: #4cbd5b"></i> ID Number:</label>
+            <input type="text" name="id_number" id="id_number" placeholder="Enter farmer's ID Number" required>
+          </div>
+          <div>
+            <label for="name"><i class="fas fa-user" style="color: #21dd3a"></i> Name:</label>
+            <input type="text" name="name" id="name" placeholder="Enter farmer's name" required>
+          </div>          
+        <div>
+          <label for="bushes"><i class="fas fa-tree" style="color: green; font-size: 30px;"></i> Number of Bushes:</label>
+          <input type="text" name="bushes" id="bushes" placeholder="Enter the number of bushes the farmer has" required>
+        </div>
+        <div>
+          <label for="kilos"><i class="fas fa-weight" style="color: #f44336; font-size: 30px;"></i>  Kilos Produced:</label>
+          <input type="text" name="kilos" id="kilos" placeholder="Enter the kilos produced by the farmer in KG's" required>
+        </div>
+        <div>
+          <label for="size"><i class="fas fa-map" style="color: brown; font-size: 30px;"></i> Size of the Land:</label>
+          <input type="text" name="size" id="size" placeholder="Enter the size of the land the farmer has in acres" required>
+        </div>
+        <button type="button" class="back-btn" onclick="window.history.back();"><i class="fas fa-arrow-left"></i> Back</button>
+        <button type="reset" class="clear-btn"><i class="fas fa-undo"></i> Clear</button>
+        <button type="submit" class="signup-btn"><i class="fas fa-sign-in-alt"></i>Register</button>
+      </form>
+    </div>
+</body>
+</html>
