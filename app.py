@@ -13,7 +13,7 @@ with open('LinearRegression.pkl', 'rb') as file:
 mdb = mysql.connector.connect(
     host="127.0.0.1",
     user="pma",
-    password="Leleih24",
+    password="********",#replace the asterisks with your database password 
     database="teaFarmers"
 )
 
